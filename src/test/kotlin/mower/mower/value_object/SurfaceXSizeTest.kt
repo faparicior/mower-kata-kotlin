@@ -8,7 +8,8 @@ import kotlin.test.Test
 private const val X_SIZE: Int = 5
 private const val INVALID_X_SIZE: Int = -1
 
-internal class SurfaceXSizeTest {
+internal class SurfaceXSizeTest
+{
     @Test
     fun `Should be build` ()
     {

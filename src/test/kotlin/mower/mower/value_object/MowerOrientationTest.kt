@@ -10,7 +10,8 @@ import kotlin.test.Test
 private const val ORIENTATION = "N"
 private const val INVALID_ORIENTATION = "H"
 
-internal class MowerOrientationTest {
+internal class MowerOrientationTest
+{
     @Test
     fun `Should be build`() {
         val orientation = MowerOrientation.build(ORIENTATION)
