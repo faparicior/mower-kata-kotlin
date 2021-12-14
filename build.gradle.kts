@@ -14,8 +14,8 @@ repositories {
 
 dependencies {
     implementation("org.junit.jupiter:junit-jupiter:5.8.2")
-    implementation("org.junit.jupiter:junit-jupiter:5.8.2")
-    implementation("org.jetbrains.kotlin:kotlin-reflect:1.6.0")
+    implementation("org.jetbrains.kotlin:kotlin-reflect:1.5.10")
+    implementation("junit:junit:4.13.2")
     testImplementation(kotlin("test"))
     testImplementation("org.assertj:assertj-core:3.21.0")
 }
