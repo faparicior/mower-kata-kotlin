@@ -4,7 +4,7 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Assertions.*
 import kotlin.test.Test
 
-private const val POSITION = 4
+private const val POSITION = -4
 private const val MESSAGE = "Invalid Y position $POSITION. Only positive values are valid."
 
 internal class InvalidMowerPositionExceptionTest
