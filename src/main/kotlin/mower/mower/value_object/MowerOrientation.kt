@@ -3,7 +3,7 @@ package mower.mower.value_object
 import mower.mower.exception.InvalidOrientationException
 
 @JvmInline
-value class Orientation private constructor(val value: String) {
+value class MowerOrientation private constructor(val value: String) {
     private enum class Orientations(val value: String){
         NORTH("N"),
         EAST("E"),
@@ -18,9 +18,9 @@ value class Orientation private constructor(val value: String) {
     }
 
     companion object {
-        fun build(value: String): Orientation
+        fun build(value: String): MowerOrientation
         {
-            return Orientation(value)
+            return MowerOrientation(value)
         }
     }
 }

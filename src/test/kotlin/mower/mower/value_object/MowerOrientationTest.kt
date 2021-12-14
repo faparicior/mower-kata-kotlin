@@ -10,19 +10,19 @@ import kotlin.test.Test
 private const val ORIENTATION = "N"
 private const val INVALID_ORIENTATION = "H"
 
-internal class OrientationTest {
+internal class MowerOrientationTest {
     @Test
     fun `Should be build`() {
-        val orientation = Orientation.build(ORIENTATION)
+        val orientation = MowerOrientation.build(ORIENTATION)
 
-        assertInstanceOf(Orientation::class.java, orientation)
+        assertInstanceOf(MowerOrientation::class.java, orientation)
         assertThat(orientation.value).isEqualTo(ORIENTATION)
     }
 
     @ParameterizedTest
     @ValueSource(strings = [ "N", "S", "E", "W" ])
     fun `Should be build with valid orientations`(value: String) {
-        val orientation = Orientation.build(value)
+        val orientation = MowerOrientation.build(value)
 
         assertThat(orientation.value).isEqualTo(value)
     }
@@ -31,7 +31,7 @@ internal class OrientationTest {
     fun `Should throw exception for invalid Orientation`() {
 
         assertThrows(InvalidOrientationException::class.java) {
-            Orientation.build(INVALID_ORIENTATION)
+            MowerOrientation.build(INVALID_ORIENTATION)
         }
     }
 }
