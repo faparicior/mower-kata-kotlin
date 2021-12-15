@@ -4,23 +4,40 @@ import mower.mower.exception.InvalidOrientationException
 
 @JvmInline
 value class MowerOrientation private constructor(val value: String) {
-    private enum class Orientations(val value: String){
-        NORTH("N"),
-        EAST("E"),
-        SOUTH("S"),
-        WEST("W")
+    private enum class Compass{
+        N, E, S, W
     }
 
     init {
-        if(null === enumValues<Orientations>().find { it.value == value}){
-            throw InvalidOrientationException.withValues(value, Orientations.values().map { it.value }.toString())
+        try {
+            Compass.valueOf(value)
+        } catch (exception: IllegalArgumentException) {
+            throw InvalidOrientationException.withValues(value, Compass.values().contentToString())
         }
     }
 
     companion object {
+        private const val COMPASS_STEP = 1
+
         fun build(value: String): MowerOrientation
         {
             return MowerOrientation(value)
         }
+    }
+
+    fun applyMovement(mowerMovement: MowerMovement): MowerOrientation {
+        val currentCompass = Compass.valueOf(value)
+
+        if (mowerMovement.isClockWise()) {
+            val futureCompass = Compass.values().getOrElse(currentCompass.ordinal + COMPASS_STEP) { Compass.N }
+            return MowerOrientation(futureCompass.name)
+        }
+
+        if (mowerMovement.isCounterClockWise()) {
+            val futureCompass = Compass.values().getOrElse(currentCompass.ordinal - COMPASS_STEP) { Compass.W }
+            return MowerOrientation(futureCompass.name)
+        }
+
+        return this
     }
 }

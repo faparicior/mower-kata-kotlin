@@ -20,4 +20,16 @@ class MowerMovement private constructor(val value: String){
             return MowerMovement(value)
         }
     }
+
+    fun isForward(): Boolean {
+        return value == Movements.FORWARD.value
+    }
+
+    fun isClockWise(): Boolean {
+        return value == Movements.RIGHT.value
+    }
+
+    fun isCounterClockWise(): Boolean {
+        return value == Movements.LEFT.value
+    }
 }
