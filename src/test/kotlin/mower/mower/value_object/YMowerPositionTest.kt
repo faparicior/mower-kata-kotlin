@@ -7,6 +7,7 @@ import kotlin.test.Test
 
 private const val Y_POSITION: Int = 3
 private const val INVALID_POSITION: Int = -1
+private const val STEP: Int = 1
 
 internal class YMowerPositionTest
 {
@@ -25,5 +26,12 @@ internal class YMowerPositionTest
         assertThrows(InvalidMowerPositionException::class.java) {
             YMowerPosition.build(INVALID_POSITION)
         }
+    }
+
+    @Test
+    fun `Should sum a Step forward`() {
+        val yMowerPosition = YMowerPosition.build(Y_POSITION)
+
+        assertThat(yMowerPosition.moveForward(STEP).value).isEqualTo(Y_POSITION + STEP)
     }
 }

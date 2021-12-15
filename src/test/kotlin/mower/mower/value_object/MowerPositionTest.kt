@@ -1,12 +1,15 @@
 package mower.mower.value_object
 
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.Disabled
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.MethodSource
+import java.util.stream.Stream
 import kotlin.test.Test
 
 private const val X_MOWER_POSITION: Int = 5
 private const val Y_MOWER_POSITION: Int = 5
-private const val ORIENTATION: String = "N"
+private const val NORTH_ORIENTATION: String = "N"
 
 internal class MowerPositionTest
 {
@@ -15,12 +18,12 @@ internal class MowerPositionTest
         val mowerPosition = MowerPosition.build(
             XMowerPosition.build(X_MOWER_POSITION),
             YMowerPosition.build(Y_MOWER_POSITION),
-            MowerOrientation.build(ORIENTATION)
+            MowerOrientation.build(NORTH_ORIENTATION)
         )
 
         assertThat(mowerPosition.xPosition.value).isEqualTo(X_MOWER_POSITION)
         assertThat(mowerPosition.yPosition.value).isEqualTo(Y_MOWER_POSITION)
-        assertThat(mowerPosition.orientation.value).isEqualTo(ORIENTATION)
+        assertThat(mowerPosition.orientation.value).isEqualTo(NORTH_ORIENTATION)
     }
 
     @Test
@@ -28,7 +31,7 @@ internal class MowerPositionTest
         var position = MowerPosition.build(
             XMowerPosition.build(X_MOWER_POSITION),
             YMowerPosition.build(Y_MOWER_POSITION),
-            MowerOrientation.build("N")
+            MowerOrientation.build(NORTH_ORIENTATION)
         )
 
         val mowerMovement = MowerMovement.build("L")
@@ -44,7 +47,7 @@ internal class MowerPositionTest
         var position = MowerPosition.build(
             XMowerPosition.build(X_MOWER_POSITION),
             YMowerPosition.build(Y_MOWER_POSITION),
-            MowerOrientation.build("N")
+            MowerOrientation.build(NORTH_ORIENTATION)
         )
 
         val mowerMovement = MowerMovement.build("R")
@@ -55,24 +58,36 @@ internal class MowerPositionTest
         assertThat(position.orientation).isEqualTo(expectedOrientation)
     }
 
-    @Test
-    @Disabled("To implement")
-    fun `Should be able to change position`(){
+    @ParameterizedTest
+    @MethodSource("orientationAndPositionMovement")
+    fun `Should be able to change position`(orientation: String, expectedXPosition: Int, expectedYPosition: Int) {
         var position = MowerPosition.build(
             XMowerPosition.build(X_MOWER_POSITION),
             YMowerPosition.build(Y_MOWER_POSITION),
-            MowerOrientation.build("N")
+            MowerOrientation.build(orientation)
         )
 
         val mowerMovement = MowerMovement.build("F")
         val expectedPosition = MowerPosition.build(
-            XMowerPosition.build(X_MOWER_POSITION),
-            YMowerPosition.build(Y_MOWER_POSITION + 1),
+            XMowerPosition.build(expectedXPosition),
+            YMowerPosition.build(expectedYPosition),
             MowerOrientation.build("N")
         )
         position = position.move(mowerMovement)
 
         assertThat(position.xPosition.value).isEqualTo(expectedPosition.xPosition.value)
         assertThat(position.yPosition.value).isEqualTo(expectedPosition.yPosition.value)
+    }
+
+    companion object {
+        @JvmStatic
+        fun orientationAndPositionMovement(): Stream<Arguments> {
+            return Stream.of(
+                Arguments.arguments("N", 5, 6),
+                Arguments.arguments("E", 6, 5),
+                Arguments.arguments("S", 5, 4),
+                Arguments.arguments("W", 4, 5)
+            )
+        }
     }
 }

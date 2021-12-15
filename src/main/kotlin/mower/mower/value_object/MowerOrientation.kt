@@ -4,8 +4,11 @@ import mower.mower.exception.InvalidOrientationException
 
 @JvmInline
 value class MowerOrientation private constructor(val value: String) {
-    private enum class Compass{
-        N, E, S, W
+    private enum class Compass (val stepDirection: Int){
+        N (POSITIVE_DIRECTION),
+        E (POSITIVE_DIRECTION),
+        S (NEGATIVE_DIRECTION),
+        W (NEGATIVE_DIRECTION)
     }
 
     init {
@@ -17,7 +20,9 @@ value class MowerOrientation private constructor(val value: String) {
     }
 
     companion object {
-        private const val COMPASS_STEP = 1
+        private const val COMPASS_STEP: Int = 1
+        private const val POSITIVE_DIRECTION: Int = 1
+        private const val NEGATIVE_DIRECTION: Int = -1
 
         fun build(value: String): MowerOrientation
         {
@@ -25,7 +30,7 @@ value class MowerOrientation private constructor(val value: String) {
         }
     }
 
-    fun applyMovement(mowerMovement: MowerMovement): MowerOrientation {
+    fun changeOrientation(mowerMovement: MowerMovement): MowerOrientation {
         val currentCompass = Compass.valueOf(value)
 
         if (mowerMovement.isClockWise()) {
@@ -39,5 +44,17 @@ value class MowerOrientation private constructor(val value: String) {
         }
 
         return this
+    }
+
+    fun affectsYAxis(): Boolean {
+        return Compass.N.name == value || Compass.S.name == value
+    }
+
+    fun affectsXAxis(): Boolean {
+        return Compass.E.name == value || Compass.W.name == value
+    }
+
+    fun stepMovement(): Int {
+        return Compass.valueOf(value).stepDirection
     }
 }

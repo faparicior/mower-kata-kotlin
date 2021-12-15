@@ -17,4 +17,8 @@ value class XMowerPosition private constructor (val value: Int) {
             return XMowerPosition(value)
         }
     }
+
+    fun moveForward(step: Int): XMowerPosition {
+        return XMowerPosition(value + step)
+    }
 }

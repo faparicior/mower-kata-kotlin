@@ -17,4 +17,8 @@ value class YMowerPosition private constructor (val value: Int) {
             return YMowerPosition(value)
         }
     }
+
+    fun moveForward(step: Int): YMowerPosition {
+        return YMowerPosition(value + step)
+    }
 }

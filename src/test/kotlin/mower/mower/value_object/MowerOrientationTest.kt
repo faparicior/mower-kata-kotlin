@@ -45,15 +45,40 @@ internal class MowerOrientationTest
         val movement = MowerMovement.build(movementData)
         val expectedOrientation = MowerOrientation.build(expectedOrientationData)
 
-        orientation = orientation.applyMovement(movement)
+        orientation = orientation.changeOrientation(movement)
 
         assertThat(orientation.value).isEqualTo(expectedOrientation.value)
+    }
+
+    @ParameterizedTest
+    @MethodSource("orientationAndYAxisAffectationProvider")
+    fun `Should eval if affects Y axis`(orientationData: String, affectsYAxis: Boolean) {
+        val orientation = MowerOrientation.build(orientationData)
+
+        assertThat(orientation.affectsYAxis()).isEqualTo(affectsYAxis)
+    }
+
+    @ParameterizedTest
+    @MethodSource("orientationAndXAxisAffectationProvider")
+    fun `Should eval if affects X axis`(orientationData: String, affectsXAxis: Boolean) {
+        val orientation = MowerOrientation.build(orientationData)
+
+        assertThat(orientation.affectsXAxis()).isEqualTo(affectsXAxis)
+    }
+
+    @ParameterizedTest
+    @MethodSource("orientationAndStepDirectionProvider")
+    fun `Should eval direction step` (orientationData: String, expectedStepDirection: Int) {
+        val orientation = MowerOrientation.build(orientationData)
+
+        assertThat(orientation.stepMovement()).isEqualTo(expectedStepDirection)
     }
 
     companion object {
         @JvmStatic
         fun orientationAndMovementProvider(): Stream<Arguments> {
             return Stream.of(
+                Arguments.arguments("N", "F", "N"),
                 Arguments.arguments("N", "R", "E"),
                 Arguments.arguments("E", "R", "S"),
                 Arguments.arguments("S", "R", "W"),
@@ -62,6 +87,36 @@ internal class MowerOrientationTest
                 Arguments.arguments("W", "L", "S"),
                 Arguments.arguments("S", "L", "E"),
                 Arguments.arguments("E", "L", "N")
+            )
+        }
+
+        @JvmStatic
+        fun orientationAndYAxisAffectationProvider(): Stream<Arguments> {
+            return Stream.of(
+                Arguments.arguments("N", true),
+                Arguments.arguments("S", true),
+                Arguments.arguments("E", false),
+                Arguments.arguments("W", false)
+            )
+        }
+
+        @JvmStatic
+        fun orientationAndXAxisAffectationProvider(): Stream<Arguments> {
+            return Stream.of(
+                Arguments.arguments("N", false),
+                Arguments.arguments("S", false),
+                Arguments.arguments("E", true),
+                Arguments.arguments("W", true)
+            )
+        }
+
+        @JvmStatic
+        fun orientationAndStepDirectionProvider(): Stream<Arguments> {
+            return Stream.of(
+                Arguments.arguments("N", 1),
+                Arguments.arguments("E", 1),
+                Arguments.arguments("S", -1),
+                Arguments.arguments("W", -1),
             )
         }
     }

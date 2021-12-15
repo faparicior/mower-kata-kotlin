@@ -4,10 +4,16 @@ class MowerPosition private constructor(val xPosition: XMowerPosition, val yPosi
 
     fun move(mowerMovement: MowerMovement): MowerPosition {
         if (mowerMovement.isForward()) {
-            // return move front
+            if (orientation.affectsYAxis()) {
+                return MowerPosition(xPosition, yPosition.moveForward(orientation.stepMovement()), orientation)
+            }
+
+            if (orientation.affectsXAxis()) {
+                return MowerPosition(xPosition.moveForward(orientation.stepMovement()), yPosition, orientation)
+            }
         }
 
-        return MowerPosition(xPosition, yPosition, orientation.applyMovement(mowerMovement))
+        return MowerPosition(xPosition, yPosition, orientation.changeOrientation(mowerMovement))
     }
 
     companion object {
