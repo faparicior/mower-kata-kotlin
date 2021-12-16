@@ -3,15 +3,13 @@ package mower.mower.value_object
 import mower.mower.exception.InvalidMovementException
 
 class MowerMovement private constructor(val value: String){
-    private enum class Movements (val value: String){
-        LEFT("L"),
-        RIGHT("R"),
-        FORWARD("F")
-    }
+    private enum class Movements { L, R, F }
 
     init {
-        if(null === enumValues<Movements>().find { it.value == value}){
-            throw InvalidMovementException.withValues(value, Movements.values().map { it.value }.toString())
+        try {
+            Movements.valueOf(value)
+        } catch (exception: IllegalArgumentException) {
+            throw InvalidMovementException.withValues(value, Movements.values().contentToString())
         }
     }
 
@@ -22,14 +20,14 @@ class MowerMovement private constructor(val value: String){
     }
 
     fun isForward(): Boolean {
-        return value == Movements.FORWARD.value
+        return value == Movements.F.name
     }
 
     fun isClockWise(): Boolean {
-        return value == Movements.RIGHT.value
+        return value == Movements.R.name
     }
 
     fun isCounterClockWise(): Boolean {
-        return value == Movements.LEFT.value
+        return value == Movements.L.name
     }
 }
