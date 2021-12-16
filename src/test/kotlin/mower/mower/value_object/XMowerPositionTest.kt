@@ -24,7 +24,7 @@ internal class XMowerPositionTest
     fun `Should throw exception for negative values` ()
     {
         assertThrows(InvalidMowerPositionException::class.java) {
-            YMowerPosition.build(INVALID_POSITION)
+            XMowerPosition.build(INVALID_POSITION)
         }
     }
 
