@@ -3,7 +3,8 @@ package mower.mower.value_object
 import mower.mower.exception.InvalidMowerIdException
 import java.util.*
 
-class MowerId private constructor(val value: String){
+@JvmInline
+value class MowerId private constructor(val value: String){
 
     init {
         try {
