@@ -10,8 +10,8 @@ import org.junit.jupiter.params.provider.ValueSource
 import java.util.stream.Stream
 import kotlin.test.Test
 
-private const val ORIENTATION = "N"
-private const val INVALID_ORIENTATION = "H"
+private const val ORIENTATION: String = "N"
+private const val INVALID_ORIENTATION: String = "H"
 
 internal class MowerOrientationTest
 {

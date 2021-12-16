@@ -9,9 +9,9 @@ private const val MOVE_LEFT: String = "L"
 private const val MOVE_RIGHT: String = "R"
 private const val MOVE_FORWARD: String = "F"
 
-private const val X_POSITION = 5
-private const val Y_POSITION = 5
-private const val STEP = 1
+private const val X_POSITION: Int = 5
+private const val Y_POSITION: Int = 5
+private const val STEP: Int = 1
 
 internal class MowerTest {
     private lateinit var mower: Mower

@@ -4,9 +4,9 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Assertions.*
 import kotlin.test.Test
 
-private const val ORIENTATION = "H"
-private const val VALID_VALUES = "N, S, E, W"
-private const val MESSAGE = "Invalid orientation $ORIENTATION. Only $VALID_VALUES values are valid."
+private const val ORIENTATION: String = "H"
+private const val VALID_VALUES: String = "N, S, E, W"
+private const val MESSAGE: String = "Invalid orientation $ORIENTATION. Only $VALID_VALUES values are valid."
 
 internal class InvalidOrientationExceptionTest
 {

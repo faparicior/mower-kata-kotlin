@@ -4,9 +4,9 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Assertions.*
 import kotlin.test.Test
 
-private const val MOVEMENT = "J"
-private const val VALID_VALUES = "L, R, F"
-private const val MESSAGE = "Invalid movement $MOVEMENT. Only $VALID_VALUES values are valid."
+private const val MOVEMENT: String = "J"
+private const val VALID_VALUES: String = "L, R, F"
+private const val MESSAGE: String = "Invalid movement $MOVEMENT. Only $VALID_VALUES values are valid."
 
 internal class InvalidMovementExceptionTest
 {
