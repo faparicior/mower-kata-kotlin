@@ -13,6 +13,10 @@ private const val X_POSITION: Int = 5
 private const val Y_POSITION: Int = 5
 private const val STEP: Int = 1
 
+private const val NORTH_ORIENTATION: String = "N"
+private const val WEST_ORIENTATION: String = "W"
+private const val EAST_ORIENTATION: String = "E"
+
 internal class MowerTest {
     private lateinit var mower: Mower
 
@@ -21,7 +25,7 @@ internal class MowerTest {
         this.mower = Mower.build(MowerPosition.build(
             XMowerPosition.build(X_POSITION),
             YMowerPosition.build(Y_POSITION),
-            MowerOrientation.build("N")
+            MowerOrientation.build(NORTH_ORIENTATION)
         ))
     }
 
@@ -32,7 +36,7 @@ internal class MowerTest {
             MowerPosition.build(
                 XMowerPosition.build(X_POSITION),
                 YMowerPosition.build(Y_POSITION),
-                MowerOrientation.build("N")
+                MowerOrientation.build(NORTH_ORIENTATION)
             )
         )
 
@@ -42,7 +46,7 @@ internal class MowerTest {
     @Test
     fun `Should be able to turn left`()
     {
-        val expectedMowerOrientation = MowerOrientation.build("W")
+        val expectedMowerOrientation = MowerOrientation.build(WEST_ORIENTATION)
 
         this.mower.move(MowerMovement.build(MOVE_LEFT))
         assertThat(mower.mowerPosition().orientation).isEqualTo(expectedMowerOrientation)
@@ -51,7 +55,7 @@ internal class MowerTest {
     @Test
     fun `Should be able to turn right`()
     {
-        val expectedMowerOrientation = MowerOrientation.build("E")
+        val expectedMowerOrientation = MowerOrientation.build(EAST_ORIENTATION)
 
         this.mower.move(MowerMovement.build(MOVE_RIGHT))
         assertThat(mower.mowerPosition().orientation).isEqualTo(expectedMowerOrientation)
