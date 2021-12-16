@@ -4,11 +4,11 @@ import mower.mower.exception.InvalidOrientationException
 
 @JvmInline
 value class MowerOrientation private constructor(val value: String) {
-    private enum class Compass (val stepDirection: Int){
-        N (POSITIVE_DIRECTION),
-        E (POSITIVE_DIRECTION),
-        S (NEGATIVE_DIRECTION),
-        W (NEGATIVE_DIRECTION)
+    private enum class Compass(val stepDirection: Int, val affectsXAxis: Boolean, val affectsYAxis: Boolean) {
+        N(POSITIVE_DIRECTION, NOT_X_AXIS, Y_AXIS),
+        E(POSITIVE_DIRECTION, X_AXIS, NOT_Y_AXIS),
+        S(NEGATIVE_DIRECTION, NOT_X_AXIS, Y_AXIS),
+        W(NEGATIVE_DIRECTION, X_AXIS, NOT_Y_AXIS)
     }
 
     init {
@@ -23,9 +23,12 @@ value class MowerOrientation private constructor(val value: String) {
         private const val COMPASS_STEP: Int = 1
         private const val POSITIVE_DIRECTION: Int = 1
         private const val NEGATIVE_DIRECTION: Int = -1
+        private const val NOT_X_AXIS: Boolean = false
+        private const val NOT_Y_AXIS: Boolean = false
+        private const val X_AXIS: Boolean = true
+        private const val Y_AXIS: Boolean = true
 
-        fun build(value: String): MowerOrientation
-        {
+        fun build(value: String): MowerOrientation {
             return MowerOrientation(value)
         }
     }
@@ -47,11 +50,11 @@ value class MowerOrientation private constructor(val value: String) {
     }
 
     fun affectsYAxis(): Boolean {
-        return Compass.N.name == value || Compass.S.name == value
+        return Compass.valueOf(value).affectsYAxis
     }
 
     fun affectsXAxis(): Boolean {
-        return Compass.E.name == value || Compass.W.name == value
+        return Compass.valueOf(value).affectsXAxis
     }
 
     fun stepMovement(): Int {
