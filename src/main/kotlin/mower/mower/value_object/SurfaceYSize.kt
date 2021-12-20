@@ -13,6 +13,7 @@ value class SurfaceYSize private constructor(val value: Int) {
     companion object {
         private const val MINIMUM_SIZE_VALUE: Int = 0
 
+        @JvmStatic
         fun build(value: Int): SurfaceYSize
         {
             return SurfaceYSize(value)

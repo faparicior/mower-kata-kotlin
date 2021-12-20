@@ -16,6 +16,7 @@ value class MowerId private constructor(val value: String){
     }
 
     companion object {
+        @JvmStatic
         fun build(value: String): MowerId {
             return MowerId(value)
         }

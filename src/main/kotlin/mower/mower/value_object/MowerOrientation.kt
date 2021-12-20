@@ -28,6 +28,7 @@ value class MowerOrientation private constructor(val value: String) {
         private const val X_AXIS: Boolean = true
         private const val Y_AXIS: Boolean = true
 
+        @JvmStatic
         fun build(value: String): MowerOrientation {
             return MowerOrientation(value)
         }

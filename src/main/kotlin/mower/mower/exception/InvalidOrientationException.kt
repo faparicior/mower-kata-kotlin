@@ -4,6 +4,7 @@ class InvalidOrientationException private constructor (message: String? = null, 
     companion object {
         private const val MESSAGE: String = "Invalid orientation %s. Only %s values are valid."
 
+        @JvmStatic
         fun withValues(value: String, validValues: String): InvalidOrientationException
         {
             return InvalidOrientationException(String.format(MESSAGE, value, validValues), null)

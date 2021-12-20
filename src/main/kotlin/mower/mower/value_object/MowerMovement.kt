@@ -14,6 +14,7 @@ class MowerMovement private constructor(val value: String){
     }
 
     companion object {
+        @JvmStatic
         fun build(value: String): MowerMovement {
             return MowerMovement(value)
         }

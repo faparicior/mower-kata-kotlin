@@ -17,6 +17,7 @@ class MowerPosition private constructor(val xPosition: XMowerPosition, val yPosi
     }
 
     companion object {
+        @JvmStatic
         fun build(xPosition: XMowerPosition, yPosition: YMowerPosition, orientation: MowerOrientation): MowerPosition {
             return MowerPosition(xPosition, yPosition, orientation)
         }
