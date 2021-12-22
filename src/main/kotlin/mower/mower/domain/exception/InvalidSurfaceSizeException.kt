@@ -1,4 +1,4 @@
-package mower.surface.domain.exception
+package mower.mower.domain.exception
 
 class InvalidSurfaceSizeException private constructor (message: String? = null, cause: Throwable? = null) : Exception(message, cause) {
     companion object {

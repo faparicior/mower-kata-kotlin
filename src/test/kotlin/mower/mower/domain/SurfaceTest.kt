@@ -1,7 +1,7 @@
-package mower.surface.domain
+package mower.mower.domain
 
-import mower.surface.domain.value_object.SurfaceXSize
-import mower.surface.domain.value_object.SurfaceYSize
+import mower.mower.domain.value_object.SurfaceXSize
+import mower.mower.domain.value_object.SurfaceYSize
 import org.assertj.core.api.Assertions.assertThat
 import kotlin.test.Test
 

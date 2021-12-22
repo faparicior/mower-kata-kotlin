@@ -8,9 +8,6 @@ import org.junit.jupiter.api.Assertions.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
-import mower.surface.domain.Surface
-import mower.surface.domain.value_object.SurfaceXSize
-import mower.surface.domain.value_object.SurfaceYSize
 import java.util.*
 import java.util.stream.Stream
 import kotlin.test.Test

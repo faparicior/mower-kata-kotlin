@@ -4,7 +4,6 @@ import mower.mower.domain.exception.InvalidMowerPositionException
 import mower.mower.domain.value_object.MowerId
 import mower.mower.domain.value_object.MowerMovement
 import mower.mower.domain.value_object.MowerPosition
-import mower.surface.domain.Surface
 
 class Mower private constructor(val mowerId: MowerId, private var mowerPosition: MowerPosition) {
 

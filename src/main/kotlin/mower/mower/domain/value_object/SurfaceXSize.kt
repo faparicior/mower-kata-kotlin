@@ -1,9 +1,9 @@
-package mower.surface.domain.value_object
+package mower.mower.domain.value_object
 
-import mower.surface.domain.exception.InvalidSurfaceSizeException
+import mower.mower.domain.exception.InvalidSurfaceSizeException
 
 @JvmInline
-value class SurfaceYSize private constructor(val value: Int) {
+value class SurfaceXSize private constructor(val value: Int) {
     init {
         if(value < MINIMUM_SIZE_VALUE){
             throw InvalidSurfaceSizeException.withValue(value)
@@ -14,9 +14,9 @@ value class SurfaceYSize private constructor(val value: Int) {
         private const val MINIMUM_SIZE_VALUE: Int = 0
 
         @JvmStatic
-        fun build(value: Int): SurfaceYSize
+        fun build(value: Int): SurfaceXSize
         {
-            return SurfaceYSize(value)
+            return SurfaceXSize(value)
         }
     }
 }

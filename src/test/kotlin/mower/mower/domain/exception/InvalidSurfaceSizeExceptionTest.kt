@@ -1,4 +1,4 @@
-package mower.surface.domain.exception
+package mower.mower.domain.exception
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Assertions.*
