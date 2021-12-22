@@ -40,10 +40,7 @@ internal class MowerTest {
             MowerOrientation.build(NORTH_ORIENTATION)
         )
 
-        mower = Mower.build(
-            mowerId,
-            mowerPosition
-        )
+        mower = Mower.build(mowerId, mowerPosition)
 
         surface = Surface.build(
             SurfaceXSize.build(5),
@@ -53,10 +50,7 @@ internal class MowerTest {
 
     @Test
     fun `Should be build`() {
-        val mower = Mower.build(
-            mowerId,
-            mowerPosition
-        )
+        val mower = Mower.build(mowerId, mowerPosition)
 
         assertThat(mower).isInstanceOf(Mower::class.java)
         assertThat(mower.mowerId).isEqualTo(mowerId)
@@ -101,10 +95,7 @@ internal class MowerTest {
             MowerOrientation.build(orientation)
         )
 
-        val mower = Mower.build(
-            mowerId,
-            mowerPosition
-        )
+        val mower = Mower.build(mowerId, mowerPosition)
 
         val exception = assertThrows(InvalidMowerPositionException::class.java) {
             mower.move(MowerMovement.build(MOVE_FORWARD), surface)
