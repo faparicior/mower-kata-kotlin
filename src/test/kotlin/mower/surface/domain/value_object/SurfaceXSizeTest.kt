@@ -1,6 +1,6 @@
-package mower.mower.domain.value_object
+package mower.surface.domain.value_object
 
-import mower.mower.domain.exception.InvalidSurfaceSizeException
+import mower.surface.domain.exception.InvalidSurfaceSizeException
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Assertions.*
 import kotlin.test.Test
