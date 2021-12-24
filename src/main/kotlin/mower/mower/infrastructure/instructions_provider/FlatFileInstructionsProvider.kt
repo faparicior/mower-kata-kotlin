@@ -20,13 +20,7 @@ class FlatFileInstructionsProvider: InstructionsProvider {
     }
 
     override fun surface(): String {
-
         return surface
-//        val surfaceData = surface
-//        val xSurfaceSize = surfaceData.split(" ")[0].toInt()
-//        val ySurfaceSize = surfaceData.split(" ")[1].toInt()
-//
-//        return Surface.build(SurfaceXSize.build(xSurfaceSize), SurfaceYSize.build(ySurfaceSize))
     }
 
     override fun totalMowers(): Int {
