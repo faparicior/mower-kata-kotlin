@@ -39,9 +39,9 @@ The output for each mower should be its final co-ordinates and heading.
 ```
 5 5
 1 2 N
-LMLMLMLMM
+LFLFLFLFF
 3 3 E
-MMRMMRMRRM
+FFRFFRFRRF
 ```
 ### Expected Output:
 ```
