@@ -22,4 +22,8 @@ class MowerPosition private constructor(val xPosition: XMowerPosition, val yPosi
             return MowerPosition(xPosition, yPosition, orientation)
         }
     }
+
+    fun positionAsString(): String {
+        return "${xPosition.value} ${yPosition.value} ${orientation.value}"
+    }
 }
