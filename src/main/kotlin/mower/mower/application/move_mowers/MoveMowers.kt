@@ -18,18 +18,26 @@ class MoveMowers constructor(private val instructionsProvider: InstructionsProvi
 
         var index = 0
         while (index < instructionsProvider.totalMowers()) {
-            val mower = buildMower(instructionsProvider, index)
-            val movements = instructionsProvider.mowerInstructions(index)
-
-            movements.forEach {
-                mower.move(MowerMovement.build(it.toString()), surface)
-            }
-
-            results.add(mower.mowerPosition().positionAsString())
+            applyInstructions(index, surface, results)
             index ++
         }
 
         return printResult(results)
+    }
+
+    private fun applyInstructions(
+        index: Int,
+        surface: Surface,
+        results: MutableList<String>
+    ) {
+        val mower = buildMower(instructionsProvider, index)
+        val movements = instructionsProvider.mowerInstructions(index)
+
+        movements.forEach {
+            mower.move(MowerMovement.build(it.toString()), surface)
+        }
+
+        results.add(mower.mowerPosition().positionAsString())
     }
 
     private fun printResult(results: MutableList<String>): String {
