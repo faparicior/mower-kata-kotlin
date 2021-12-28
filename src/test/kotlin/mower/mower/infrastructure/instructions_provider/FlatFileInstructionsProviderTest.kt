@@ -34,8 +34,6 @@ internal class FlatFileInstructionsProviderTest {
     fun `Should load instructions`() {
         flatFileInstructionsProvider.load(instructions)
 
-        val field = FlatFileInstructionsProvider::class.memberProperties.find { it.name == "instructions" }
-
         val expectedInstructions:Array<String> = arrayOf(
             MOWER_POSITION_1,
             MOWER_MOVEMENTS_1,
@@ -43,6 +41,7 @@ internal class FlatFileInstructionsProviderTest {
             MOWER_MOVEMENTS_2
         )
 
+        val field = FlatFileInstructionsProvider::class.memberProperties.find { it.name == "instructions" }
         field?.let {
             it.isAccessible = true
             val value = it.get(flatFileInstructionsProvider)

@@ -4,7 +4,7 @@ import mower.mower.infrastructure.instructions_provider.FlatFileInstructionsProv
 import org.assertj.core.api.Assertions.assertThat
 import kotlin.test.Test
 
-internal class MoveMowersTest {
+internal class MoveMowersIntegrationTest {
 
     @Test
     fun `Should process input file and do output results`() {
