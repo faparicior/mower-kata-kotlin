@@ -13,12 +13,35 @@ repositories {
 }
 
 dependencies {
-    implementation("org.junit.jupiter:junit-jupiter:5.8.2")
-    implementation("org.jetbrains.kotlin:kotlin-reflect:1.5.10")
-    implementation("junit:junit:4.13.2")
+    testImplementation("org.junit.jupiter:junit-jupiter:5.8.2")
     testImplementation(kotlin("test"))
     testImplementation("org.assertj:assertj-core:3.21.0")
+    testImplementation("org.jetbrains.kotlin:kotlin-reflect:1.6.10")
 }
+
+// Integration tests config
+
+sourceSets {
+    create("integrationTest") {
+        compileClasspath += sourceSets.main.get().output
+        runtimeClasspath += sourceSets.main.get().output
+    }
+}
+
+configurations["integrationTestImplementation"].extendsFrom(configurations.testImplementation.get())
+configurations["integrationTestRuntimeOnly"].extendsFrom(configurations.testRuntimeOnly.get())
+
+val integrationTest = task<Test>("integrationTest") {
+    description = "Runs integration tests."
+    group = "verification"
+
+    testClassesDirs = sourceSets["integrationTest"].output.classesDirs
+    classpath = sourceSets["integrationTest"].runtimeClasspath
+    shouldRunAfter("test")
+}
+
+tasks.check { dependsOn(integrationTest) }
+// End of integration tests config
 
 tasks.test {
     useJUnitPlatform()
