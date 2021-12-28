@@ -19,30 +19,6 @@ dependencies {
     testImplementation("org.jetbrains.kotlin:kotlin-reflect:1.6.10")
 }
 
-// Integration tests config
-
-sourceSets {
-    create("integrationTest") {
-        compileClasspath += sourceSets.main.get().output
-        runtimeClasspath += sourceSets.main.get().output
-    }
-}
-
-configurations["integrationTestImplementation"].extendsFrom(configurations.testImplementation.get())
-configurations["integrationTestRuntimeOnly"].extendsFrom(configurations.testRuntimeOnly.get())
-
-val integrationTest = task<Test>("integrationTest") {
-    description = "Runs integration tests."
-    group = "verification"
-
-    testClassesDirs = sourceSets["integrationTest"].output.classesDirs
-    classpath = sourceSets["integrationTest"].runtimeClasspath
-    shouldRunAfter("test")
-}
-
-tasks.check { dependsOn(integrationTest) }
-// End of integration tests config
-
 tasks.test {
     useJUnitPlatform()
 }
