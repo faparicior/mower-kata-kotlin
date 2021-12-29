@@ -1,4 +1,4 @@
-package mower.mower.infrastructure.instructions_provider
+package mower.mower.infrastructure.instructionsprovider
 
 import mower.mower.domain.value_object.*
 import org.assertj.core.api.Assertions.assertThat

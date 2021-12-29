@@ -1,6 +1,6 @@
-package mower.mower.infrastructure.instructions_provider
+package mower.mower.infrastructure.instructionsprovider
 
-import mower.mower.application.move_mowers.InstructionsProvider
+import mower.mower.application.movemowers.InstructionsProvider
 import mower.mower.domain.value_object.*
 
 private const val REGISTRIES_BY_MOWER = 2

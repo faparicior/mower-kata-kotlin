@@ -1,4 +1,4 @@
-package mower.mower.application.move_mowers
+package mower.mower.application.movemowers
 
 import mower.mower.domain.Mower
 import mower.mower.domain.Surface

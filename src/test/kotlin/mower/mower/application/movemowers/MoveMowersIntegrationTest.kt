@@ -1,6 +1,6 @@
-package mower.mower.application.move_mowers
+package mower.mower.application.movemowers
 
-import mower.mower.infrastructure.instructions_provider.FlatFileInstructionsProvider
+import mower.mower.infrastructure.instructionsprovider.FlatFileInstructionsProvider
 import org.assertj.core.api.Assertions.assertThat
 import kotlin.test.Test
 
