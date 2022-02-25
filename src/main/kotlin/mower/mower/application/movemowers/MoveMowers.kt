@@ -9,9 +9,9 @@ private const val NEW_LINE = "\n"
 
 class MoveMowers constructor(private val instructionsProvider: InstructionsProvider) {
 
-    fun execute(instructions: Array<String>): String {
+    fun execute(instructions: MoveMowersCommand): MoveMowersResponse {
 
-        instructionsProvider.load(instructions)
+        instructionsProvider.load(instructions.fileName)
 
         val results: MutableList<String> = mutableListOf()
         val surface: Surface = buildSurface(instructionsProvider.surface())
@@ -36,14 +36,14 @@ class MoveMowers constructor(private val instructionsProvider: InstructionsProvi
         return mower.mowerPosition().positionAsString()
     }
 
-    private fun printResult(results: MutableList<String>): String {
+    private fun printResult(results: MutableList<String>): MoveMowersResponse {
         var printableResults = ""
 
         results.forEach {
             printableResults += it + NEW_LINE
         }
 
-        return printableResults.dropLast(1)
+        return MoveMowersResponse(printableResults.dropLast(1))
     }
 
     private fun buildSurface(surfaceData: String): Surface {

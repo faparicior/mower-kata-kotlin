@@ -7,5 +7,5 @@ interface InstructionsProvider {
     fun totalMowers(): Int
     fun mowerPosition(index: Int): MowerPosition
     fun mowerInstructions(index: Int): String
-    fun load(instructions: Array<String>)
+    fun load(fileName: String)
 }

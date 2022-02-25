@@ -2,6 +2,7 @@ package mower.mower.infrastructure.instructionsprovider
 
 import mower.mower.application.movemowers.InstructionsProvider
 import mower.mower.domain.value_object.*
+import java.io.File
 
 private const val REGISTRIES_BY_MOWER = 2
 
@@ -14,8 +15,8 @@ class FlatFileInstructionsProvider: InstructionsProvider {
     private lateinit var instructions: MutableList<String>
     private lateinit var surface: String
 
-    override fun load(instructions: Array<String>){
-        this.instructions = instructions.toMutableList()
+    override fun load(fileName: String){
+        this.instructions = File(fileName).readLines().toMutableList()
         surface = this.instructions.removeFirst()
     }
 
