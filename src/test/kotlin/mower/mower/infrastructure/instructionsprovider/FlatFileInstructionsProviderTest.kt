@@ -13,18 +13,20 @@ private const val MOWER_MOVEMENTS_1 = "LFLFLFLFF"
 private const val MOWER_POSITION_2 = "3 3 E"
 private const val MOWER_MOVEMENTS_2 = "FFRFFRFRRF"
 
+private const val FILENAME: String = "src/test/kotlin/mower/mower/application/movemowers/fixtures/instructions.txt"
+
 internal class FlatFileInstructionsProviderTest {
 
     private val flatFileInstructionsProvider: FlatFileInstructionsProvider = FlatFileInstructionsProvider()
 
     @BeforeTest
     fun setUp() {
-        flatFileInstructionsProvider.load("src/test/kotlin/mower/mower/application/movemowers/fixtures/instructions.txt")
+        flatFileInstructionsProvider.load(FILENAME)
     }
 
     @Test
     fun `Should load instructions`() {
-        flatFileInstructionsProvider.load("src/test/kotlin/mower/mower/application/movemowers/fixtures/instructions.txt")
+        flatFileInstructionsProvider.load(FILENAME)
 
         val expectedInstructions:Array<String> = arrayOf(
             MOWER_POSITION_1,
