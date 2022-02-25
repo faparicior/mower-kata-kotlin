@@ -1,7 +1,4 @@
-package mower.mower.domain
-
-import mower.mower.domain.value_object.SurfaceXSize
-import mower.mower.domain.value_object.SurfaceYSize
+package mower.mower.domain.value_object
 
 class Surface private constructor(val xSize: SurfaceXSize, val ySize: SurfaceYSize) {
     companion object {

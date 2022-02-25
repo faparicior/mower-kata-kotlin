@@ -1,7 +1,7 @@
 package mower.mower.application.movemowers
 
 import mower.mower.domain.Mower
-import mower.mower.domain.Surface
+import mower.mower.domain.value_object.Surface
 import mower.mower.domain.value_object.*
 import java.util.*
 
@@ -46,7 +46,7 @@ class MoveMowers constructor(private val instructionsProvider: InstructionsProvi
         return printableResults.dropLast(1)
     }
 
-    private fun buildSurface(surfaceData: String):Surface {
+    private fun buildSurface(surfaceData: String): Surface {
         val xSurfaceSize = surfaceData.split(" ")[0].toInt()
         val ySurfaceSize = surfaceData.split(" ")[1].toInt()
 
